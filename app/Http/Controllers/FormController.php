@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Contact;
 
 class FormController extends Controller
 {
@@ -16,5 +17,20 @@ class FormController extends Controller
             'email' => 'required|email',
             'message' => 'max:1000'
         ]);
+    }
+
+    public function submitForm (Request $request) {
+        $contact = new Contact();
+        $contact->name = $request->input('name');
+        $contact->email = $request->input('email');
+        $contact->message = $request->input('message');
+
+        $contact->save();
+
+        return redirect()->route('form');
+    }
+
+    public function showData() {
+        return view('form', ['data' => Contact::all()]);
     }
 }

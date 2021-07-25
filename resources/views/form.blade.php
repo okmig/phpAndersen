@@ -31,5 +31,25 @@
         <br>
         <button type="submit">Submit</button>
     </form>
+    
+    <div>
+        <table>
+            <tr>
+                <th>name</th>
+                <th>email</th>
+                <th>message</th>
+                <th>date of creation</th>
+            </tr>
+            @foreach($data as $item)           
+            <tr>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->email }}</td>
+                <td>{{ $item->message }}</td>
+                <td>{{ $item->created_at }}</td>
+            </tr>
+            @endforeach        
+        </table>
+    </div>
+
 </body>
 </html>
